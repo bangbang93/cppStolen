@@ -16,6 +16,10 @@ const cli = meow(`
 
 let func = cli.input[0];
 
+if (!func){
+  cli.showHelp();
+}
+
 if (fs.existsSync(path.join(__dirname, 'func', func) + '.js')){
   require(path.join(__dirname, 'func', func))(cli.flags);
 } else {
