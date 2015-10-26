@@ -22,7 +22,7 @@ module.exports = function (url, paramsObject) {
         if (json.result == 0){
           resolve(json['resultContent']);
         } else {
-          reject('no such user');
+          reject('no such data');
         }
       }
       catch(e){

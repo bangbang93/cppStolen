@@ -2,6 +2,7 @@
  * Created by 伟航 on 15/10/27.
  */
 'use strict';
+
 const request = require('../../libs/request');
 const URL = require('../../libs/url');
 const async = require('async');
@@ -16,23 +17,24 @@ module.exports = function (opts)  {
   let parallel = opts.parallel || 1;
 
   let queue = async.queue(function (task, cb) {
-    request(URL.MeUser_Url, {
-      userid: task.userid
+    request(URL.BooksDetail_Url, {
+      doujinshiid: task.doujinshiid,
+      userid: 1
     }).then(function (user) {
       cb(null, user);
     }).catch(cb);
   }, parallel);
 
   Q.ninvoke(MongoClient, 'connect', `mongodb://${host}/${db}`).then(function (db) {
-    return db.collection('users');
+    return db.collection('book');
   }).then(function (collection) {
     let done = 0;
     let count = end - start + 1;
     for(let i = start;i<= end;i++){
       Q.ninvoke(queue, 'push', {
-        userid: i
-      }).then(function (user) {
-        collection.insert(user);
+        doujinshiid: i
+      }).then(function (book) {
+        collection.insert(book);
         done++;
         console.log(`${done}/${count}`);
       }).catch(function (err) {

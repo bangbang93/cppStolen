@@ -12,6 +12,7 @@ const cli = meow(`
 
   Func
   user/fetchList --host localhost --db cppStolen --start 1 --end 10 --parallel 1
+  book/fetchList --host localhost --db cppStolen --start 1 --end 10 --parallel 1
 `);
 
 let func = cli.input[0];
