@@ -13,13 +13,15 @@ module.exports = function (opts)  {
   let db = opts.db || 'cppStolen';
   let start = opts.start || 1;
   let end = opts.end || 10;
+  let parallel = opts.parallel || 1;
+
   let queue = async.queue(function (task, cb) {
     request(URL.MeUser_Url, {
       userid: task.userid
     }).then(function (user) {
       cb(null, user);
     }).catch(cb);
-  }, 1);
+  }, parallel);
 
   Q.ninvoke(MongoClient, 'connect', `mongodb://${host}/${db}`).then(function (db) {
     return db.collection('users');
