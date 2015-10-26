@@ -11,7 +11,7 @@ const cli = meow(`
   $ node index <func>
 
   Func
-  user/fetchList --host localhost --db cppStolen --start 0 --end 10 --parallel 1
+  user/fetchList --host localhost --db cppStolen --start 1 --end 10 --parallel 1
 `);
 
 let func = cli.input[0];

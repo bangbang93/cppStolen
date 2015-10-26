@@ -9,7 +9,7 @@ const Q = require('q');
 const MongoClient = require('mongodb').MongoClient;
 
 module.exports = function (opts)  {
-  let host = opts.host || '192.168.100.1';
+  let host = opts.host || 'localhost';
   let db = opts.db || 'cppStolen';
   let start = opts.start || 1;
   let end = opts.end || 10;
@@ -29,12 +29,18 @@ module.exports = function (opts)  {
     let done = 0;
     let count = end - start + 1;
     for(let i = start;i<= end;i++){
-      queue.push({
+      Q.ninvoke(queue, 'push', {
         userid: i
-      }, function (err, user) {
+      }).then(function (user) {
         collection.insert(user);
         done++;
         console.log(`${done}/${count}`);
+      }).catch(function (err) {
+        done++;
+        console.log(`${done}/${count} --`);
+        if (err != 'no such user') {
+          console.error(err);
+        }
       })
     }
     queue.drain = function (){
