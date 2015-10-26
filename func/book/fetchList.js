@@ -26,7 +26,7 @@ module.exports = function (opts)  {
   }, parallel);
 
   Q.ninvoke(MongoClient, 'connect', `mongodb://${host}/${db}`).then(function (db) {
-    return db.collection('book');
+    return db.collection('books');
   }).then(function (collection) {
     let done = 0;
     let count = end - start + 1;
