@@ -27,6 +27,8 @@ module.exports = function (url, paramsObject) {
       }
       catch(e){
         if (e instanceof SyntaxError){
+          console.log(body);
+          console.log(url);
           reject('error json');
         } else {
           reject(e);
