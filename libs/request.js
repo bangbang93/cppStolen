@@ -6,7 +6,7 @@ const request = require('request');
 const URL = require('../libs/url');
 
 module.exports = function (url, paramsObject) {
-  if (!url.match(/^http/)){
+  if (!url.match(/^http/)) {
     url = URL.Host_Url + url;
   }
   let params = [];
@@ -15,18 +15,22 @@ module.exports = function (url, paramsObject) {
   });
   url = url + '?' + params.join('&');
   return new Promise(function (resolve, reject) {
-    request.get(url, function (err, res, body) {
+    request.get(url, {
+      headers: {
+        Cookie: 'user=10|10|01|20'
+      }
+    }, function (err, res, body) {
       if (err) return reject(err);
-      try{
+      try {
         let json = JSON.parse(body);
-        if (json.result == 0){
+        if (json.result == 0) {
           resolve(json['resultContent']);
         } else {
           reject('no such data');
         }
       }
-      catch(e){
-        if (e instanceof SyntaxError){
+      catch (e) {
+        if (e instanceof SyntaxError) {
           console.log(body);
           console.log(url);
           reject('error json');
