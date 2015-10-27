@@ -16,7 +16,7 @@ module.exports = function (opts)  {
     userid
   }).then(function (user) {
     let nickname = opts['nickname'] || user['nickname'];
-    let sex = (opts['sex'] || user['sex']) == '男'?0:1;
+    let sex = (opts['sex'] || user['sex']) == '女'?0:1;
     let facepicid = '0';
     let code = encrypt.getCode(userid);
     let backgroundpicid = opts['backgroundPicId'] || user['backgroundPicId'];
