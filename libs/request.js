@@ -14,10 +14,15 @@ module.exports = function (url, paramsObject) {
     params.push(encodeURIComponent(key) + '=' + encodeURIComponent(paramsObject[key]));
   });
   url = url + '?' + params.join('&');
+  if (paramsObject.userid){
+    var cookie = `user=${paramsObject.userid}|1|1|2`;
+  } else {
+    cookie = 'user=1|1|1|2';
+  }
   return new Promise(function (resolve, reject) {
     request.get(url, {
       headers: {
-        Cookie: 'user=10|10|01|20'
+        Cookie: cookie
       }
     }, function (err, res, body) {
       if (err) return reject(err);
@@ -26,6 +31,7 @@ module.exports = function (url, paramsObject) {
         if (json.result == 0) {
           resolve(json['resultContent']);
         } else {
+          console.log(body);
           reject('no such data');
         }
       }
