@@ -20,8 +20,9 @@ node index <func> <arg>
 ```
 
 目前支持的func有
-user/fetchList
-book/fetchList
+
+- user/fetchList
+- book/fetchList
 
 arguments
 -----------------------
