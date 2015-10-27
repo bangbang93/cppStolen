@@ -26,7 +26,11 @@ book/fetchList
 arguments
 -----------------------
 --host 使用的mongodb主机
+
 --db 使用的mongodb库
+
 --start 起始索引
+
 --end 结束索引
+
 --parallel 并发数量
