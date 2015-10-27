@@ -22,7 +22,10 @@ if (!func){
 }
 
 if (fs.existsSync(path.join(__dirname, 'func', func) + '.js')){
-  require(path.join(__dirname, 'func', func))(cli.flags);
+  let err = require(path.join(__dirname, 'func', func))(cli.flags);
+  if (err){
+    console.log(err);
+  }
 } else {
   cli.showHelp();
 }
