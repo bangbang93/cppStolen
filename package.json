@@ -18,6 +18,7 @@
   "homepage": "https://github.com/bangbang93/cppStolen#readme",
   "dependencies": {
     "async": "^1.5.0",
+    "cheerio": "^0.19.0",
     "meow": "^3.4.2",
     "mongodb": "^2.0.46",
     "q": "^1.4.1",

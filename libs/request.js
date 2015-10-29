@@ -15,9 +15,9 @@ module.exports = function (url, paramsObject) {
   });
   url = url + '?' + params.join('&');
   if (paramsObject.userid){
-    var cookie = `user=${paramsObject.userid}|1|1|2`;
+    var cookie = `user=${paramsObject.userid}|1|1|2|7DA9BDF67B0B27D51FB8CE764C7FF7AE55DACC29`;
   } else {
-    cookie = 'user=1|1|1|2';
+    cookie = 'user=1|1|1|2|7DA9BDF67B0B27D51FB8CE764C7FF7AE55DACC29';
   }
   return new Promise(function (resolve, reject) {
     request.get(url, {
